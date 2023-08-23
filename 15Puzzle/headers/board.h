@@ -31,8 +31,10 @@ class Board {
   void swapTile(Point, Point);
   // Randomize the board a given no. of times
   void randomize(int n = 300);
-
-  friend std::ostream& operator<<(std::ostream& stream, const Board& board);
+  // Returns true if user won
+  bool userWon() const;
+  friend std::ostream& operator<<(std::ostream&, const Board& );
+  friend bool operator==(const Board& , const Board& );
 };
 
 #endif

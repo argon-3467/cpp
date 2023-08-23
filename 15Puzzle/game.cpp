@@ -9,7 +9,7 @@
 
 int main() {
   Board board{};
-  board.randomize(300);
+  board.randomize(3);
   std::cout << board;
   while (true) {
     std::cout << "Enter a command: ";
@@ -26,7 +26,11 @@ int main() {
 
     bool userMoved{board.slideTile(dir)};
     if (userMoved) std::cout << board;
+    if(board.userWon()){
+      std::cout << "You Won!!!";
+      break;
+    }
   }
-
+  std::cout << "\n\nBye!\n\n";
   return 0;
 }

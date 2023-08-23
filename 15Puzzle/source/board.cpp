@@ -57,3 +57,18 @@ void Board::randomize(int n) {
     slideTile(randDir);
   }
 }
+
+bool Board::userWon() const {
+  static Board solved_board{};
+  return *this == solved_board;
+}
+
+bool operator==(const Board& b1, const Board& b2) {
+  for(int i{0}; i < Board::SIZE; ++i){
+    for(int j{0}; j < Board::SIZE; ++j){
+      if(b1.m_board[i][j].getNum() != b2.m_board[i][j].getNum())
+        return false;
+    }
+  }
+  return true;
+}
