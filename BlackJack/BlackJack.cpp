@@ -232,13 +232,15 @@ class Player {
 
   unsigned int money() const { return m_money; }
 
-  void removeBetMoney(unsigned int betMoney) {
+  unsigned int removeBetMoney(unsigned int betMoney) {
     if (betMoney > m_money) {
       std::cout << "You don't have that much going all in..." << std::endl;
+      unsigned int valid_bet = m_money;
       m_money = 0;
-      return;
+      return valid_bet;
     }
     m_money -= betMoney;
+    return betMoney;
   }
 
   void addMoney(unsigned int wonMoney) { m_money += wonMoney; }
@@ -372,7 +374,7 @@ void playBlackjack(Deck& deck, std::vector<bool>& results,
     AllOutOfMoney = false;
     std::cout << "Place your bet: ";
     std::cin >> bets[i];
-    players[i].removeBetMoney(bets[i]);
+    bets[i] = players[i].removeBetMoney(bets[i]);
   }
 
   if (AllOutOfMoney) {
